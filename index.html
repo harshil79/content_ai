@@ -41,30 +41,34 @@
             }
         }
         
-        function displayData(topics) {
-            let html = '';
-            
-            topics.forEach(topic => {
-                html += `
-                    <div class="trending-card">
-                        <div class="topic-title">${topic.title}</div>
-                        <div class="topic-meta">Score: ${topic.score} | <a href="${topic.url}" target="_blank">View Source</a></div>
-                        
-                        <div class="content-ideas">
-                            <h4>Content Ideas:</h4>
-                            ${topic.ideas.map(idea => `
-                                <div class="idea-card">
-                                    <span class="platform">${idea.platform}:</span> ${idea.content}
-                                </div>
-                            `).join('')}
+          function displayData(topics) {
+                let html = '';
+                
+                topics.forEach(topic => {
+                    html += `
+                        <div class="trending-card">
+                            <div class="topic-title">${topic.title}</div>
+                            <div class="topic-meta">
+                                Score: ${topic.score} | Engagement: ${topic.engagement} | 
+                                <a href="${topic.url}" target="_blank">View Source</a>
+                            </div>
+                            
+                            <div class="content-ideas">
+                                <h4>💡 AI-Generated Content Ideas:</h4>
+                                ${topic.ideas.map(idea => `
+                                    <div class="idea-card">
+                                        <span class="platform">${idea.emoji} Platform:</span> 
+                                        <p>${idea.content}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
                         </div>
-                    </div>
-                `;
-            });
+                    `;
+                });
+                
+                document.getElementById('content').innerHTML = html;
+            }
             
-            document.getElementById('content').innerHTML = html;
-        }
-        
         // Auto-load on page load
         window.onload = refreshData;
     </script>
