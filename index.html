@@ -1,15 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Talk to Meera</title>
+    <title>Content Assistant Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .header { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; text-align: center; border-radius: 10px; margin-bottom: 30px; }
+        .refresh-btn { background: #27ae60; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-size: 16px; }
+        .trending-card { background: white; margin: 20px 0; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .topic-title { font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 10px; }
+        .topic-meta { color: #7f8c8d; font-size: 14px; margin-bottom: 15px; }
+        .content-ideas { margin-top: 15px; }
+        .idea-card { background: #f8f9fa; padding: 15px; margin: 10px 0; border-left: 4px solid #3498db; border-radius: 5px; }
+        .platform { font-weight: bold; color: #e74c3c; }
+        .loading { text-align: center; padding: 50px; }
+    </style>
 </head>
 <body>
-  <h2>Talk to Meera</h2>
-  <form action="https://fly-jobs-1.fly.dev/webhook/html-user-input" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required><br><br>
-    <input type="email" name="email" placeholder="Your Email" required><br><br>
-    <button type="submit">Start Talk</button>
-  </form>
+    <div class="header">
+        <h1>📈 Content Assistant Dashboard</h1>
+        <p>Trending Topics & AI-Generated Content Ideas</p>
+        <button class="refresh-btn" onclick="refreshData()">🔄 Refresh Data</button>
+    </div>
+    
+    <div id="content">
+        <div class="loading">Loading trending topics and content ideas...</div>
+    </div>
+
+    <script>
+        async function refreshData() {
+            // Add N8N webhook call here
+            document.getElementById('content').innerHTML = '<div class="loading">Refreshing data...</div>';
+            // Fetch and display logic goes here
+        }
+        
+        // Auto-load on page load
+        window.onload = refreshData;
+    </script>
 </body>
 </html>
