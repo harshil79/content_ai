@@ -48,7 +48,23 @@
             }
         }
         
-        function displayData(topics) {
+        function displayData(data) {
+            console.log('DisplayData received:', data);
+            console.log('Type:', typeof data);
+            console.log('Is array:', Array.isArray(data));
+            
+            // Handle both single object and array
+            let topics;
+            if (Array.isArray(data)) {
+                topics = data;
+            } else if (data && typeof data === 'object') {
+                topics = [data]; // Wrap single object in array
+            } else {
+                console.error('Invalid data format:', data);
+                document.getElementById('content').innerHTML = '<div class="loading">Invalid data format received</div>';
+                return;
+            }
+            
             let html = '';
             
             topics.forEach(topic => {
